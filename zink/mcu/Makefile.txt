@@ -1,0 +1,23 @@
+# Zen Link FPGA bus - MicroPython native module
+#
+# Builds fpga.mpy for the RP2350 (Cortex-M33), which MicroPython's rp2 port
+# targets as armv7m - same as the EPM11 module this is modelled on.
+#
+#   make                              # MPY_DIR defaults to ../../../micropython
+#   make MPY_DIR=/path/to/micropython
+#
+
+# Location of top-level MicroPython directory
+MPY_DIR ?= ../../../micropython
+
+# Name of module, this is what `import fpga` will find
+MOD = fpga
+
+# Source files (.c or .py)
+SRC = fpga.c bus.c
+
+# Architecture to build for (x86, x64, armv7m, xtensa, xtensawin, rv32imc, rv64imc)
+ARCH = armv7m
+
+# Include to get the rules for compiling and linking the module
+include $(MPY_DIR)/py/dynruntime.mk
