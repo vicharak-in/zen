@@ -1,9 +1,0 @@
-# Efinity build output
-emu/outflow/
-emu/work_*/
-emu/ip/
-emu/ooc/
-emu/.lock
-
-# Simulation output
-*.vvp

@@ -1,0 +1,10 @@
+CellDelayOverride {
+  Cell: "pll_inst1~PLL"
+  DelayOverride {
+    from: "CLKIN"
+    to: "CLKOUT0"
+    Type: "CLK_TO_Q"
+    value_min: 0
+    value_max: 0
+  }
+}

@@ -1,0 +1,15 @@
+
+# Efinity Interface Configuration
+# Version: 2026.1.132
+# Date: 2026-11-02 16:19
+
+# Copyright (C) 2013 - 2026 Efinix Inc. All rights reserved.
+
+# [required | optional] (input|output|clkout), x, y, z, __bypass__|[~|!]<clock>, [[~|!]<pin_name>] | __vcc__ | __gnd__
+input, 78, 102, 1, __bypass__, btn1
+input, 0, 83, 1, __bypass__, clk
+optional input, 0, 102, 1, __bypass__, clk_pad
+output, 0, 65, 0, __bypass__, led1
+output, 0, 67, 0, __bypass__, led2
+input, 0, 22, 1, __bypass__, uart_rx
+output, 0, 32, 0, __bypass__, uart_tx

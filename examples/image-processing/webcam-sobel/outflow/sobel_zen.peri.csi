@@ -1,0 +1,65 @@
+CellSiteInst {
+  cell: "btn1"
+  block_and_site_inst: "PKG_PIN/PKG_PIN_INOUT"
+  block_inst: "GPIOR_15_CBUS0"
+}
+CellSiteInst {
+  cell: "clk_pad"
+  block_and_site_inst: "PKG_PIN/PKG_PIN_INOUT"
+  block_inst: "GPIOL_20_PLLIN"
+}
+CellSiteInst {
+  cell: "led1"
+  block_and_site_inst: "PKG_PIN/PKG_PIN_INOUT"
+  block_inst: "GPIOL_13_CTRL1"
+}
+CellSiteInst {
+  cell: "led2"
+  block_and_site_inst: "PKG_PIN/PKG_PIN_INOUT"
+  block_inst: "GPIOL_14_CLK0"
+}
+CellSiteInst {
+  cell: "uart_rx"
+  block_and_site_inst: "PKG_PIN/PKG_PIN_INOUT"
+  block_inst: "GPIOL_00"
+}
+CellSiteInst {
+  cell: "uart_tx"
+  block_and_site_inst: "PKG_PIN/PKG_PIN_INOUT"
+  block_inst: "GPIOL_03_CDI4"
+}
+CellSiteInst {
+  cell: "btn1~GPIO"
+  block_and_site_inst: "T8_GPIO/T8_GPIO_SLOT0"
+  block_inst: "GPIOR_15"
+}
+CellSiteInst {
+  cell: "clk_pad~GPIO"
+  block_and_site_inst: "T8_GPIO/T8_GPIO_SLOT0"
+  block_inst: "GPIOL_20"
+}
+CellSiteInst {
+  cell: "led1~GPIO"
+  block_and_site_inst: "T8_GPIO/T8_GPIO_SLOT0"
+  block_inst: "GPIOL_13"
+}
+CellSiteInst {
+  cell: "led2~GPIO"
+  block_and_site_inst: "T8_GPIO/T8_GPIO_SLOT0"
+  block_inst: "GPIOL_14"
+}
+CellSiteInst {
+  cell: "pll_inst1~PLL"
+  block_and_site_inst: "PLL/PLL_SLOT0"
+  block_inst: "PLL_0"
+}
+CellSiteInst {
+  cell: "uart_rx~GPIO"
+  block_and_site_inst: "T8_GPIO/T8_GPIO_SLOT0"
+  block_inst: "GPIOL_00"
+}
+CellSiteInst {
+  cell: "uart_tx~GPIO"
+  block_and_site_inst: "T8_GPIO/T8_GPIO_SLOT0"
+  block_inst: "GPIOL_03"
+}

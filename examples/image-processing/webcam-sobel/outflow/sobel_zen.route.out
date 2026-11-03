@@ -1,0 +1,108 @@
+           
+           Efinix FPGA Placement and Routing.
+           Version: 2026.1.132 
+           Compiled: May 29 2026.
+           
+           Copyright (C) 2013 - 2026 Efinix, Inc. All rights reserved.
+
+           
+           The Tool Is Based on VPR of University of Toronto,
+           a free open source code under MIT license.
+           
+           
+INFO     : Running Placement and Routing for Family "Trion", Device "T4F81" ...
+           
+           ***** Beginning stage Routing graph generation ... *****
+INFO     : Read ipin pattern from C:/Efinity/2026.1/arch/./routing/ipin_oph.xml
+INFO     : Finished parsing ipin pattern file 'C:/Efinity/2026.1/arch/./routing/ipin_oph.xdb'.
+INFO     : Finished parsing switch_block file 'C:/Efinity/2026.1/arch/.\routing\sb_connectivity_subset.xdb'.
+INFO     : BuildGraph process took 0.4627239 seconds [FlowMsg::StageDuration]
+INFO     :     BuildGraph process took 0.375 seconds (approximately) in total CPU time [FlowMsg::StageDuration::CPUTime]
+INFO     : BuildGraph process virtual memory usage: begin = 104.676 MB, end = 139.968 MB, delta = 35.292 MB [FlowMsg::VMUsage]
+INFO     :     BuildGraph process peak virtual memory usage = 139.968 MB [FlowMsg::VMUsage::Peak]
+INFO     : BuildGraph process resident set memory usage: begin = 120.38 MB, end = 158.796 MB, delta = 38.416 MB [FlowMsg::RSSUsage]
+INFO     :     BuildGraph process peak resident set memory usage = 158.796 MB [FlowMsg::RSSUsage::Peak]
+INFO     : check rr_graph process took 0.0148103 seconds [FlowMsg::StageDuration]
+INFO     :     check rr_graph process took 0.015625 seconds (approximately) in total CPU time [FlowMsg::StageDuration::CPUTime]
+INFO     : check rr_graph process virtual memory usage: begin = 139.968 MB, end = 141.92 MB, delta = 1.952 MB [FlowMsg::VMUsage]
+INFO     :     check rr_graph process peak virtual memory usage = 141.92 MB [FlowMsg::VMUsage::Peak]
+INFO     : check rr_graph process resident set memory usage: begin = 158.808 MB, end = 160.816 MB, delta = 2.008 MB [FlowMsg::RSSUsage]
+INFO     :     check rr_graph process peak resident set memory usage = 160.816 MB [FlowMsg::RSSUsage::Peak]
+INFO     : Generated 398045 RR nodes and 1462647 RR edges [DBMsg::DatabaseRoutingGraphStats]
+INFO     : This design has 0 global control net(s). See C:/Users/ayush/Documents/vicharak/zen/examples/image-processing/webcam-sobel/outflow\sobel_zen.route.rpt for details.
+INFO     : Routing graph took 0.5053494 seconds [FlowMsg::StageDuration]
+INFO     :     Routing graph took 0.421875 seconds (approximately) in total CPU time [FlowMsg::StageDuration::CPUTime]
+INFO     : Routing graph virtual memory usage: begin = 104.676 MB, end = 141.92 MB, delta = 37.244 MB [FlowMsg::VMUsage]
+INFO     :     Routing graph peak virtual memory usage = 141.92 MB [FlowMsg::VMUsage::Peak]
+INFO     : Routing graph resident set memory usage: begin = 120.076 MB, end = 160.888 MB, delta = 40.812 MB [FlowMsg::RSSUsage]
+INFO     :     Routing graph peak resident set memory usage = 160.888 MB [FlowMsg::RSSUsage::Peak]
+           ***** Ending stage Routing graph generation *****
+           
+           ***** Beginning stage routing ... *****
+INFO     : SDC file 'C:/Users/ayush/Documents/vicharak/zen/examples/image-processing/webcam-sobel/sobel_zen.sdc' parsed successfully.
+INFO     :  ---------      -------     --------------      -------------
+INFO     :  Iteration      Overuse     Crit Path (ns)      Calc Time (s)
+INFO     :  ---------      -------     --------------      -------------
+INFO     :          1         1844               27.8              0.127
+INFO     :          2          206              29.44               0.14
+INFO     :          3           43               28.1             0.0571
+INFO     :          4            1               28.1             0.0267
+INFO     :          5            0               28.1             0.0156
+           
+INFO     : Successfully routed netlist after 5 routing iterations and 2525508 heapops
+INFO     : Completed net delay value cross check successfully.
+           ***** Beginning stage routing check ... *****
+           ***** Ending stage routing check *****
+           
+INFO     : Serial number (magic cookie) for the routing is: 818180889
+INFO     : Netlist fully routed.
+INFO     : Successfully created FPGA route file 'C:/Users/ayush/Documents/vicharak/zen/examples/image-processing/webcam-sobel/outflow/sobel_zen.route'
+INFO     : Routing took 0.4986597 seconds [FlowMsg::StageDuration]
+INFO     :     Routing took 0.4375 seconds (approximately) in total CPU time [FlowMsg::StageDuration::CPUTime]
+INFO     : Routing virtual memory usage: begin = 141.92 MB, end = 154.908 MB, delta = 12.988 MB [FlowMsg::VMUsage]
+INFO     :     Routing peak virtual memory usage = 154.908 MB [FlowMsg::VMUsage::Peak]
+INFO     : Routing resident set memory usage: begin = 160.888 MB, end = 171.568 MB, delta = 10.68 MB [FlowMsg::RSSUsage]
+INFO     :     Routing peak resident set memory usage = 171.568 MB [FlowMsg::RSSUsage::Peak]
+           ***** Ending stage routing *****
+           
+           ***** Beginning stage final timing analysis ... *****
+INFO     : SDC file 'C:/Users/ayush/Documents/vicharak/zen/examples/image-processing/webcam-sobel/sobel_zen.sdc' parsed successfully.
+Maximum possible analyzed clocks frequency
+ Clock Name  Period (ns)  Frequency (MHz)     Edge
+    clk         28.244        35.406         (R-R)
+
+Geomean max period: 28.244
+
+Setup (Max) Clock Relationship
+  Launch Clock    Capture Clock   Constraint (ns)     Slack (ns)          Edge
+      clk              clk             40.000           11.756           (R-R)
+
+Hold (Min) Clock Relationship
+  Launch Clock    Capture Clock   Constraint (ns)     Slack (ns)          Edge
+      clk              clk             0.000            0.360            (R-R)
+
+INFO     : Write Timing Report to "C:/Users/ayush/Documents/vicharak/zen/examples/image-processing/webcam-sobel/outflow\sobel_zen.timing.rpt" ...
+INFO     : final timing analysis took 0.0887662 seconds [FlowMsg::StageDuration]
+INFO     :     final timing analysis took 0.078125 seconds (approximately) in total CPU time [FlowMsg::StageDuration::CPUTime]
+INFO     : final timing analysis virtual memory usage: begin = 154.908 MB, end = 154.908 MB, delta = 0 MB [FlowMsg::VMUsage]
+INFO     :     final timing analysis peak virtual memory usage = 154.908 MB [FlowMsg::VMUsage::Peak]
+INFO     : final timing analysis resident set memory usage: begin = 171.592 MB, end = 172.128 MB, delta = 0.536 MB [FlowMsg::RSSUsage]
+INFO     :     final timing analysis peak resident set memory usage = 172.128 MB [FlowMsg::RSSUsage::Peak]
+           ***** Ending stage final timing analysis *****
+           
+           ***** Beginning stage bitstream generation ... *****
+INFO     : Reading core interface constraints file "C:/Users/ayush/Documents/vicharak/zen/examples/image-processing/webcam-sobel/outflow/sobel_zen.interface.csv" [DBMsg::CoreInterfaceConstraintsFileReading]
+INFO     : Successfully read core interface constraints file "C:/Users/ayush/Documents/vicharak/zen/examples/image-processing/webcam-sobel/outflow/sobel_zen.interface.csv" [DBMsg::CoreInterfaceConstraintsFileLoadSuccess]
+INFO     : Finished writing bitstream file C:/Users/ayush/Documents/vicharak/zen/examples/image-processing/webcam-sobel/work_pnr\sobel_zen.lbf.
+INFO     : Bitstream generation took 0.0685746 seconds [FlowMsg::StageDuration]
+INFO     :     Bitstream generation took 0.03125 seconds (approximately) in total CPU time [FlowMsg::StageDuration::CPUTime]
+INFO     : Bitstream generation virtual memory usage: begin = 154.908 MB, end = 154.908 MB, delta = 0 MB [FlowMsg::VMUsage]
+INFO     :     Bitstream generation peak virtual memory usage = 154.908 MB [FlowMsg::VMUsage::Peak]
+INFO     : Bitstream generation resident set memory usage: begin = 172.188 MB, end = 172.964 MB, delta = 0.776 MB [FlowMsg::RSSUsage]
+INFO     :     Bitstream generation peak resident set memory usage = 172.964 MB [FlowMsg::RSSUsage::Peak]
+INFO     : The entire flow of EFX_PNR took 3.1230576 seconds [FlowMsg::StageDuration]
+INFO     :     The entire flow of EFX_PNR took 2.8125 seconds (approximately) in total CPU time [FlowMsg::StageDuration::CPUTime]
+INFO     : The entire flow of EFX_PNR virtual memory usage: begin = 20.12 MB, end = 154.908 MB, delta = 134.788 MB [FlowMsg::VMUsage]
+INFO     :     The entire flow of EFX_PNR peak virtual memory usage = 154.908 MB [FlowMsg::VMUsage::Peak]
+INFO     : The entire flow of EFX_PNR resident set memory usage: begin = 22.6 MB, end = 173.028 MB, delta = 150.428 MB [FlowMsg::RSSUsage]
+INFO     :     The entire flow of EFX_PNR peak resident set memory usage = 173.028 MB [FlowMsg::RSSUsage::Peak]

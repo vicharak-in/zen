@@ -1,0 +1,39 @@
+
+Efinix FPGA Placement and Routing.
+Version: 2026.1.132 
+Date: Mon Nov  2 16:19:21 2026
+
+Copyright (C) 2013 - 2026 Efinix, Inc. All rights reserved.
+ 
+Family: Trion 
+Device: T4F81
+Top-level Entity Name: sobel_zen
+Elapsed time for packing: 0 hours 0 minutes 0 seconds
+
+---------- Resource Summary (begin) ----------
+Inputs: 3 / 96 (3.12%)
+Outputs: 3 / 223 (1.35%)
+Clocks: 1 / 16 (6.25%)
+Logic Elements: 793 / 3888 (20.40%)
+	LE: LUTs/Adders: 655 / 3888 (16.85%)
+	LE: Registers: 362 / 3888 (9.31%)
+Memory Blocks: 5 / 15 (33.33%)
+Multipliers: 0 / 4 (0.00%)
+---------- Resource Summary (end) ----------
+
+
+---------- Memory Block Information (begin) ----------
+
++----------------------------+------+------------+-------------+-------------+------------+
+|            NAME            | MODE | READ_WIDTH | WRITE_WIDTH | WRITE_MODE  | OUTPUT_REG |
++----------------------------+------+------------+-------------+-------------+------------+
+| u_sobel/u_core/lbuf__D$b12 | SDP  |     4      |      4      | READ_FIRST  |   false    |
+| u_sobel/u_core/lbuf__D$c1  | SDP  |     4      |      4      | READ_FIRST  |   false    |
+| u_sobel/u_core/lbuf__D$12  | SDP  |     4      |      4      | READ_FIRST  |   false    |
+|  u_sobel/u_core/lbuf__D$2  | SDP  |     4      |      4      | READ_FIRST  |   false    |
+|        u_sobel/fifo        | SDP  |     8      |      8      | WRITE_FIRST |   false    |
++----------------------------+------+------------+-------------+-------------+------------+
+
+----------- Memory Block Information (end) ----------
+
+Elapsed time for placement: 0 hours 0 minutes 1 seconds

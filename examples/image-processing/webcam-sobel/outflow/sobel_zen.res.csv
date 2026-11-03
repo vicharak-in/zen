@@ -1,0 +1,12 @@
+sep=\t
+Module Resource Usage Distribution Estimates
+Generated at: Nov 02, 2026 16:19:15
+
+Note: some resources maybe grouped under different hierarchy due to optimization and LUT mapping
+
+Module	       FFs	      ADDs	      LUTs	      RAMs	 DSP/MULTs
+sobel_zen_top:sobel_zen_top               	  362(56)	  278(55)	  375(20)	     5(0)	     0(0)	
+ +u_sobel:sobel_uart_top(CLKS_PER_BIT=27) 	  306(94)	  223(68)	 355(136)	     5(1)	     0(0)	
+  +u_rx:uart_rx(CLKS_PER_BIT=27)          	   29(29)	     0(0)	   25(25)	     0(0)	     0(0)	
+  +u_core:sobel_core                      	 163(163)	 155(155)	 167(167)	     4(4)	     0(0)	
+  +u_tx:uart_tx(CLKS_PER_BIT=27)          	   20(20)	     0(0)	   27(27)	     0(0)	     0(0)	

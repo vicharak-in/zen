@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<efx:tool_report xmlns:efx="http://www.efinixinc.com/tool_report" date="2026-11-02 16:19" project="sobel_zen" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.efinixinc.com/tool_report tool_report.xsd">
+  <efx:group name="Periphery Resource">
+    <efx:group_data name="GPIO" severity="info" value="6 / 55"/>
+    <efx:group_data name="JTAG User TAP" severity="info" value="0 / 2"/>
+    <efx:group_data name="Oscillator" severity="info" value="0 / 1"/>
+    <efx:group_data name="PLL" severity="info" value="1 / 1"/>
+  </efx:group>
+</efx:tool_report>

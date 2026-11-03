@@ -1,0 +1,115 @@
+INFO     : Efinix FPGA Synthesis.
+INFO     : Version: 2026.1.132
+INFO     : Compiled: May 29 2026.
+INFO     : 
+INFO     : Copyright (C) 2013 - 2026 Efinix, Inc. All rights reserved.
+
+INFO     : Reading project database "C:/Users/ayush/Documents/vicharak/zen/examples/image-processing/webcam-sobel/sobel_zen.xml" [FlowMsg::ProjectDatabaseReading]
+INFO     : Maximum concurrency has been set to 8 [FlowMsg::MaxThreads]
+INFO     : Reading project database "C:/Users/ayush/Documents/vicharak/zen/examples/image-processing/webcam-sobel/sobel_zen.xml" [FlowMsg::ProjectDatabaseReading]
+INFO     : ***** Beginning Analysis ... *****
+INFO     : default VHDL library search path is now "C:/Efinity/2026.1/sim_models/vhdl/packages/vhdl_2008" [VHDL-1504]
+INFO     : Restoring all Verilog modules from file 'C:/Efinity/2026.1/sim_models/maplib/perilib_efxlib_parsetree.vdb' [VERI-2484]
+INFO     : Restoring all Verilog modules from file 'C:/Efinity/2026.1/sim_models/maplib/maplib_efxlib_parsetree.vdb' [VERI-2484]
+INFO     : Analyzing Verilog file 'C:\Users\ayush\Documents\vicharak\zen\examples\image-processing\webcam-sobel\sobel_zen_top.v' [VERI-1482]
+INFO     : Analyzing Verilog file 'C:\Users\ayush\Documents\vicharak\zen\examples\image-processing\webcam-sobel\sobel_uart_top.v' [VERI-1482]
+INFO     : Analyzing Verilog file 'C:\Users\ayush\Documents\vicharak\zen\examples\image-processing\webcam-sobel\sobel_core.v' [VERI-1482]
+INFO     : Analyzing Verilog file 'C:\Users\ayush\Documents\vicharak\zen\examples\image-processing\webcam-sobel\uart_rx.v' [VERI-1482]
+INFO     : Analyzing Verilog file 'C:\Users\ayush\Documents\vicharak\zen\examples\image-processing\webcam-sobel\uart_tx.v' [VERI-1482]
+INFO     : Analysis took 0.0405927 seconds [FlowMsg::StageDuration]
+INFO     :     Analysis took 0 seconds (approximately) in total CPU time [FlowMsg::StageDuration::CPUTime]
+INFO     : Analysis virtual memory usage: begin = 59.6 MB, end = 59.616 MB, delta = 0.016 MB [FlowMsg::VMUsage]
+INFO     :     Analysis peak virtual memory usage = 59.624 MB [FlowMsg::VMUsage::Peak]
+INFO     : Analysis resident set memory usage: begin = 63.976 MB, end = 66.824 MB, delta = 2.848 MB [FlowMsg::RSSUsage]
+INFO     :     Analysis peak resident set memory usage = 66.824 MB [FlowMsg::RSSUsage::Peak]
+INFO     : ***** Ending Analysis ... *****
+INFO     : ***** Beginning Elaboration ... *****
+INFO     : C:\Users\ayush\Documents\vicharak\zen\examples\image-processing\webcam-sobel\sobel_zen_top.v(9): compiling module 'sobel_zen_top' [VERI-1018]
+INFO     : C:\Users\ayush\Documents\vicharak\zen\examples\image-processing\webcam-sobel\sobel_uart_top.v(10): compiling module 'sobel_uart_top(CLKS_PER_BIT=27)' [VERI-1018]
+INFO     : C:\Users\ayush\Documents\vicharak\zen\examples\image-processing\webcam-sobel\sobel_uart_top.v(57): extracting RAM for identifier 'fifo' [VERI-2571]
+INFO     : C:\Users\ayush\Documents\vicharak\zen\examples\image-processing\webcam-sobel\uart_rx.v(5): compiling module 'uart_rx(CLKS_PER_BIT=27)' [VERI-1018]
+INFO     : C:\Users\ayush\Documents\vicharak\zen\examples\image-processing\webcam-sobel\sobel_core.v(8): compiling module 'sobel_core' [VERI-1018]
+INFO     : C:\Users\ayush\Documents\vicharak\zen\examples\image-processing\webcam-sobel\sobel_core.v(30): extracting RAM for identifier 'lbuf' [VERI-2571]
+INFO     : C:\Users\ayush\Documents\vicharak\zen\examples\image-processing\webcam-sobel\uart_tx.v(5): compiling module 'uart_tx(CLKS_PER_BIT=27)' [VERI-1018]
+INFO     : Elaboration took 0.0081294 seconds [FlowMsg::StageDuration]
+INFO     :     Elaboration took 0 seconds (approximately) in total CPU time [FlowMsg::StageDuration::CPUTime]
+INFO     : Elaboration virtual memory usage: begin = 59.616 MB, end = 59.616 MB, delta = 0 MB [FlowMsg::VMUsage]
+INFO     :     Elaboration peak virtual memory usage = 59.624 MB [FlowMsg::VMUsage::Peak]
+INFO     : Elaboration resident set memory usage: begin = 66.868 MB, end = 68.336 MB, delta = 1.468 MB [FlowMsg::RSSUsage]
+INFO     :     Elaboration peak resident set memory usage = 68.336 MB [FlowMsg::RSSUsage::Peak]
+INFO     : ***** Ending Elaboration ... *****
+INFO     : ... Setting Synthesis Option: mode=speed
+INFO     : ***** Beginning Reading Mapping Library ... *****
+INFO     : Reading Mapping Library took 0.0013658 seconds [FlowMsg::StageDuration]
+INFO     :     Reading Mapping Library took 0 seconds (approximately) in total CPU time [FlowMsg::StageDuration::CPUTime]
+INFO     : Reading Mapping Library virtual memory usage: begin = 64.232 MB, end = 64.232 MB, delta = 0 MB [FlowMsg::VMUsage]
+INFO     :     Reading Mapping Library peak virtual memory usage = 64.232 MB [FlowMsg::VMUsage::Peak]
+INFO     : Reading Mapping Library resident set memory usage: begin = 71.392 MB, end = 71.396 MB, delta = 0.004 MB [FlowMsg::RSSUsage]
+INFO     :     Reading Mapping Library peak resident set memory usage = 71.396 MB [FlowMsg::RSSUsage::Peak]
+INFO     : ***** Ending Reading Mapping Library ... *****
+INFO     : ... Pre-synthesis checks begin
+INFO     : ... Memory 'lbuf' is not initialized, assuming empty initial contents. (C:\Users\ayush\Documents\vicharak\zen\examples\image-processing\webcam-sobel\sobel_core.v:30) [EFX-0677]
+INFO     : ... Memory 'fifo' is not initialized, assuming empty initial contents. (C:\Users\ayush\Documents\vicharak\zen\examples\image-processing\webcam-sobel\sobel_uart_top.v:57) [EFX-0677]
+INFO     : ... Pre-synthesis checks end (Real time : 0s)
+INFO     : ... NameSpace init begin
+INFO     : ... NameSpace init end (Real time : 0s)
+INFO     : ... Mapping design "sobel_zen_top"
+INFO     : ... Hierarchical pre-synthesis "uart_rx(CLKS_PER_BIT=27)" begin
+INFO     : ... Hierarchical pre-synthesis "uart_rx(CLKS_PER_BIT=27)" end (Real time : 0s)
+INFO     : ... Hierarchical pre-synthesis "sobel_core" begin
+INFO     : ... Hierarchical pre-synthesis "sobel_core" end (Real time : 0s)
+INFO     : ... Hierarchical pre-synthesis "uart_tx(CLKS_PER_BIT=27)" begin
+INFO     : ... Hierarchical pre-synthesis "uart_tx(CLKS_PER_BIT=27)" end (Real time : 0s)
+INFO     : ... Hierarchical pre-synthesis "sobel_uart_top(CLKS_PER_BIT=27)" begin
+INFO     : ... Hierarchical pre-synthesis "sobel_uart_top(CLKS_PER_BIT=27)" end (Real time : 0s)
+INFO     : ... Hierarchical pre-synthesis "sobel_zen_top" begin
+INFO     : ... Clock Enable Synthesis Performed on 84 flops.
+INFO     : ... Hierarchical pre-synthesis "sobel_zen_top" end (Real time : 0s)
+INFO     : ... Flat optimizations begin
+INFO     : ... Flat optimizations end (Real time : 0s)
+INFO     : ... Flat synthesis begin
+INFO     : ... Flat synthesis end (Real time : 0s)
+INFO     : ... Flat optimizations begin
+INFO     : ... Flat optimizations end (Real time : 0s)
+INFO     : ... Check and break combinational loops begin
+INFO     : ... Check and break combinational loops end (Real time : 0s)
+INFO     : ... Sequential Optimization begin
+INFO     : ... Clock Network 'clk' with 332 loads will be considered for sequential optimization.
+INFO     : ... Sequential Optimization deduced 69 equivalent points.
+INFO     : ... Sequential Optimization end (Real time : 0s)
+INFO     : ... Setup for logic synthesis begin
+INFO     : ... Setup for logic synthesis end (Real time : 0s)
+INFO     : ... LUT mapping begin
+INFO     : ... LS, strategy: 3, nd: 375, ed: 1193, lv: 6, pw: 933.21
+INFO     : ... LUT mapping end (Real time : 2s)
+INFO     : ... Post-synthesis Verific netlist creation begin
+INFO     : ... Post-synthesis Verific netlist creation end (Real time : 0s)
+INFO     : ... Postmap Retiming Optimization begin
+INFO     : ... Clock Network 'clk~clk' with 327 loads will be considered for retiming optimization.
+INFO     : ... Performed 4 retime moves.
+INFO     : ... Postmap Retiming Optimization end (Real time : 0s)
+INFO     : ***** Beginning VDB Netlist Checker ... *****
+INFO     : VDB Netlist Checker took 0.0011619 seconds [FlowMsg::StageDuration]
+INFO     :     VDB Netlist Checker took 0 seconds (approximately) in total CPU time [FlowMsg::StageDuration::CPUTime]
+INFO     : VDB Netlist Checker virtual memory usage: begin = 71.556 MB, end = 71.564 MB, delta = 0.008 MB [FlowMsg::VMUsage]
+INFO     :     VDB Netlist Checker peak virtual memory usage = 122.108 MB [FlowMsg::VMUsage::Peak]
+INFO     : VDB Netlist Checker resident set memory usage: begin = 88.888 MB, end = 88.944 MB, delta = 0.056 MB [FlowMsg::RSSUsage]
+INFO     :     VDB Netlist Checker peak resident set memory usage = 120.232 MB [FlowMsg::RSSUsage::Peak]
+INFO     : ***** Ending VDB Netlist Checker ... *****
+INFO     : Resource Summary 
+INFO     : ======================================= 
+INFO     : EFX_ADD                 : 	278
+INFO     : EFX_LUT4                : 	375
+INFO     : EFX_FF                  : 	362
+INFO     : EFX_RAM_5K              : 	5
+INFO     : EFX_GBUFCE              : 	1
+INFO     : ======================================= 
+INFO     : ... Post-Map Verilog Writer begin
+INFO     : Writing netlist 'sobel_zen_top' to Verilog file 'C:/Users/ayush/Documents/vicharak/zen/examples/image-processing/webcam-sobel/outflow/sobel_zen.map.v' [VDB-1030]
+INFO     : ... Post-Map Verilog Writer end (Real time : 0s)
+INFO     : The entire flow of EFX_MAP took 2.6976477 seconds [FlowMsg::StageDuration]
+INFO     :     The entire flow of EFX_MAP took 2.046875 seconds (approximately) in total CPU time [FlowMsg::StageDuration::CPUTime]
+INFO     : The entire flow of EFX_MAP virtual memory usage: begin = 19.084 MB, end = 79.604 MB, delta = 60.52 MB [FlowMsg::VMUsage]
+INFO     :     The entire flow of EFX_MAP peak virtual memory usage = 122.108 MB [FlowMsg::VMUsage::Peak]
+INFO     : The entire flow of EFX_MAP resident set memory usage: begin = 19.68 MB, end = 94.488 MB, delta = 74.808 MB [FlowMsg::RSSUsage]
+INFO     :     The entire flow of EFX_MAP peak resident set memory usage = 120.232 MB [FlowMsg::RSSUsage::Peak]

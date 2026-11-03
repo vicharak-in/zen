@@ -1,0 +1,99 @@
+
+# Efinity Pinout Report
+# Version: 2026.1.132
+# Date: 2026-11-02 16:19
+
+# Copyright (C) 2013 - 2026 Efinix Inc. All rights reserved.
+
+# Device: T4F81
+# Package status: final
+# Project: sobel_zen
+# Configuration mode: active (x1)
+
+# NOTE: Similar information is available in sobel_zen.pinout.csv
+
++------------+--------------------+-----------------------+---------------+----------------------+------------------+------+-------------+-----------------------------+
+| Pin Number |    Signal Name     |        Pin Name       |   Direction   |     I/O Standard     | I/O Bank Voltage | Bank |  Pull Type  |           Function          |
++------------+--------------------+-----------------------+---------------+----------------------+------------------+------+-------------+-----------------------------+
+|     A1     |      --VCC--       |        VCCA_PLL       |     Power     |                      |                  |  1C  |             |       1.1 V PLL Power       |
+|     A2     |      --GND--       |          GND          |     Power     |                      |                  |      |             |            Ground           |
+|     A3     |      --TDI--       |          TDI          |     Input     |                      |      3.3 V       |  1B  |             |        Configuration        |
+|     A4     |      --TDO--       |          TDO          |     Output    |                      |      3.3 V       |  1B  |             |        Configuration        |
+|     A5     |     --UNUSED--     |        GPIOR_00       |     Input     |                      |      3.3 V       |  2A  | weak pullup |           User IO           |
+|     A6     |     --UNUSED--     |        GPIOR_03       |     Input     |                      |      3.3 V       |  2A  | weak pullup |           User IO           |
+|     A7     |      --VCC--       |        VCCIO2A        |     Power     |                      |      3.3 V       |  2A  |             |         VCCIO Power         |
+|     A8     |     --UNUSED--     |        GPIOR_08       |     Input     |                      |      3.3 V       |  2A  | weak pullup |           User IO           |
+|     A9     |     --UNUSED--     |        GPIOR_10       |     Input     |                      |      3.3 V       |  2A  | weak pullup |           User IO           |
+|     B1     |      --GND--       |        GNDA_PLL       |     Power     |                      |                  |      |             |          PLL Ground         |
+|     B2     |      --VCC--       |        VCCIO1B        |     Power     |                      |      3.3 V       |  1B  |             |         VCCIO Power         |
+|     B3     |    --NSTATUS--     |    GPIOL_21_NSTATUS   |     Input     |                      |      3.3 V       |  1B  | weak pullup |    User IO/Configuration    |
+|     B4     |      --TMS--       |          TMS          |     Input     |                      |      3.3 V       |  1B  |             |        Configuration        |
+|     B5     |     --UNUSED--     |        GPIOR_01       |     Input     |                      |      3.3 V       |  2A  | weak pullup |           User IO           |
+|     B6     |     --UNUSED--     |        GPIOR_05       |     Input     |                      |      3.3 V       |  2A  | weak pullup |           User IO           |
+|     B7     |      --GND--       |          GND          |     Power     |                      |                  |      |             |            Ground           |
+|     B8     |     --UNUSED--     |        GPIOR_11       |     Input     |                      |      3.3 V       |  2A  | weak pullup |           User IO           |
+|     B9     |     --UNUSED--     |        GPIOR_14       |     Input     |                      |      3.3 V       |  2A  | weak pullup |           User IO           |
+|     C1     |      --VCC--       |          VCC          |     Power     |                      |                  |      |             |       1.1 V VCC Power       |
+|     C2     |     --UNUSED--     |     GPIOL_16_CLK2     |     Input     |                      |      3.3 V       |  1B  | weak pullup |         User IO/GCLK        |
+|     C3     |      clk_pad       |     GPIOL_20_PLLIN    |     Input     | 3.3 V LVTTL / LVCMOS |      3.3 V       |  1B  |             |      User IO/PLL_CLKIN      |
+|     C4     |      --TCK--       |          TCK          |     Input     |                      |      3.3 V       |  1B  |             |        Configuration        |
+|     C5     |     --UNUSED--     | GPIOR_02_RESERVED_OUT |     Input     |                      |      3.3 V       |  2A  | weak pullup |           User IO           |
+|     C6     |     --UNUSED--     |        GPIOR_06       |     Input     |                      |      3.3 V       |  2A  | weak pullup |           User IO           |
+|     C7     |     --UNUSED--     |        GPIOR_07       |     Input     |                      |      3.3 V       |  2A  | weak pullup |           User IO           |
+|     C8     |     --UNUSED--     |        GPIOR_12       |     Input     |                      |      3.3 V       |  2A  | weak pullup |           User IO           |
+|     C9     |  --CBUS0-- / btn1  |     GPIOR_15_CBUS0    |     Input     | 3.3 V LVTTL / LVCMOS |      3.3 V       |  2A  | weak pullup |    User IO/Configuration    |
+|     D1     |      --GND--       |          GND          |     Power     |                      |                  |      |             |            Ground           |
+|     D2     |     --UNUSED--     |     GPIOL_17_CLK3     |     Input     |                      |      3.3 V       |  1B  | weak pullup |         User IO/GCLK        |
+|     D3     |     --UNUSED--     |     GPIOL_19_CTRL3    |     Input     |                      |      3.3 V       |  1B  | weak pullup |        User IO/GCTRL        |
+|     D4     |      --VCC--       |          VCC          |     Power     |                      |                  |      |             |       1.1 V VCC Power       |
+|     D5     |      --GND--       |          GND          |     Power     |                      |                  |      |             |            Ground           |
+|     D6     |     --UNUSED--     |        GPIOR_13       |     Input     |                      |      3.3 V       |  2A  | weak pullup |           User IO           |
+|     D7     |     --CBUS1--      |  GPIOR_16_CTRL7_CBUS1 |     Input     |                      |      3.3 V       |  2A  | weak pullup | User IO/GCTRL/Configuration |
+|     D8     |     --CBUS2--      |  GPIOR_17_CTRL6_CBUS2 |     Input     |                      |      3.3 V       |  2A  | weak pullup | User IO/GCTRL/Configuration |
+|     D9     |     --UNUSED--     |     GPIOR_18_CLK7     |     Input     |                      |      3.3 V       |  2A  | weak pullup |         User IO/GCLK        |
+|     E1     |     --UNUSED--     |     GPIOL_15_CLK1     |     Input     |                      |      3.3 V       |  1A  | weak pullup |         User IO/GCLK        |
+|     E2     |        led2        |     GPIOL_14_CLK0     |     Output    | 3.3 V LVTTL / LVCMOS |      3.3 V       |  1A  |             |         User IO/GCLK        |
+|     E3     |     --UNUSED--     |     GPIOL_18_CTRL2    |     Input     |                      |      3.3 V       |  1B  | weak pullup |        User IO/GCTRL        |
+|     E4     |      --GND--       |          GND          |     Power     |                      |                  |      |             |            Ground           |
+|     E5     |      --VCC--       |          VCC          |     Power     |                      |                  |      |             |       1.1 V VCC Power       |
+|     E6     |     --UNUSED--     |     GPIOR_23_CTRL4    |     Input     |                      |      3.3 V       |  2B  | weak pullup |        User IO/GCTRL        |
+|     E7     |     --CBSEL1--     |  GPIOR_21_CLK4_CBSEL1 |     Input     |                      |      3.3 V       |  2B  | weak pullup |         User IO/GCLK        |
+|     E8     |     --UNUSED--     |     GPIOR_19_CLK6     |     Input     |                      |      3.3 V       |  2A  | weak pullup |         User IO/GCLK        |
+|     E9     |      --GND--       |          GND          |     Power     |                      |                  |      |             |            Ground           |
+|     F1     |        led1        |     GPIOL_13_CTRL1    |     Output    | 3.3 V LVTTL / LVCMOS |      3.3 V       |  1A  |             |        User IO/GCTRL        |
+|     F2     |      --VCC--       |          VCC          |     Power     |                      |                  |      |             |       1.1 V VCC Power       |
+|     F3     |      --CDI3--      |     GPIOL_11_CDI3     |     Input     |                      |      3.3 V       |  1A  | weak pullup |           User IO           |
+|     F4     |      --CDI0--      |     GPIOL_04_CDI0     |     Input     |                      |      3.3 V       |  1A  | weak pullup |    User IO/Configuration    |
+|     F5     |     --UNUSED--     |        GPIOR_25       |     Input     |                      |      3.3 V       |  2B  | weak pullup |           User IO           |
+|     F6     |     --UNUSED--     |        GPIOR_24       |     Input     |                      |      3.3 V       |  2B  | weak pullup |           User IO           |
+|     F7     |     --UNUSED--     |     GPIOR_22_CTRL5    |     Input     |                      |      3.3 V       |  2B  | weak pullup |        User IO/GCTRL        |
+|     F8     |     --UNUSED--     |     GPIOR_20_CLK5     |     Input     |                      |      3.3 V       |  2B  | weak pullup |         User IO/GCLK        |
+|     F9     |      --VCC--       |          VCC          |     Power     |                      |                  |      |             |       1.1 V VCC Power       |
+|     G1     |     --UNUSED--     |     GPIOL_12_CTRL0    |     Input     |                      |      3.3 V       |  1A  | weak pullup |        User IO/GCTRL        |
+|     G2     |      --GND--       |          GND          |     Power     |                      |                  |      |             |            Ground           |
+|     G3     |      --CDI6--      |     GPIOL_07_CDI6     |     Input     |                      |      3.3 V       |  1A  | weak pullup |           User IO           |
+|     G4     | --CDI4-- / uart_tx |     GPIOL_03_CDI4     |     Output    | 3.3 V LVTTL / LVCMOS |      3.3 V       |  1A  |             |           User IO           |
+|     G5     |      uart_rx       |        GPIOL_00       |     Input     | 3.3 V LVTTL / LVCMOS |      3.3 V       |  1A  |             |           User IO           |
+|     G6     |      --CSO--       |      GPIOR_35_CSO     |     Input     |                      |      3.3 V       |  2B  | weak pullup |    User IO/Configuration    |
+|     G7     |      --GND--       |          GND          |     Power     |                      |                  |      |             |            Ground           |
+|     G8     |     --UNUSED--     |        GPIOR_31       |     Input     |                      |      3.3 V       |  2B  | weak pullup |           User IO           |
+|     G9     |     --CBSEL0--     |    GPIOR_26_CBSEL0    |     Input     |                      |      3.3 V       |  2B  | weak pullup |           User IO           |
+|     H1     |      --GND--       |          GND          |     Power     |                      |                  |      |             |            Ground           |
+|     H2     |      --CDI7--      |     GPIOL_10_CDI7     |     Input     |                      |      3.3 V       |  1A  | weak pullup |           User IO           |
+|     H3     |      --CDI1--      |     GPIOL_06_CDI1     |     Input     |                      |      3.3 V       |  1A  | weak pullup |    User IO/Configuration    |
+|     H4     |      --CCK--       |      GPIOL_02_CCK     |     Input     |                      |      3.3 V       |  1A  | weak pullup |    User IO/Configuration    |
+|     H5     |     --CDONE--      |         CDONE         | Bidirectional |                      |      3.3 V       |  1A  |             |        Configuration        |
+|     H6     |     --UNUSED--     |        GPIOR_36       |     Input     |                      |      3.3 V       |  2B  | weak pullup |           User IO           |
+|     H7     |      --VCC--       |        VCCIO2B        |     Power     |                      |      3.3 V       |  2B  |             |         VCCIO Power         |
+|     H8     |     --UNUSED--     |        GPIOR_32       |     Input     |                      |      3.3 V       |  2B  | weak pullup |           User IO           |
+|     H9     |     --UNUSED--     |        GPIOR_27       |     Input     |                      |      3.3 V       |  2B  | weak pullup |           User IO           |
+|     J1     |      --VCC--       |        VCCIO1A        |     Power     |                      |      3.3 V       |  1A  |             |         VCCIO Power         |
+|     J2     |      --CDI2--      |     GPIOL_09_CDI2     |     Input     |                      |      3.3 V       |  1A  | weak pullup |           User IO           |
+|     J3     |      --CDI5--      |     GPIOL_05_CDI5     |     Input     |                      |      3.3 V       |  1A  | weak pullup |           User IO           |
+|     J4     |      --SS_N--      |     GPIOL_01_SS_N     |     Input     |                      |      3.3 V       |  1A  | weak pullup |    User IO/Configuration    |
+|     J5     |    --CRESET_N--    |        CRESET_N       |     Input     |                      |      3.3 V       |  1A  |             |        Configuration        |
+|     J6     |     --TEST_N--     |    GPIOR_37_TEST_N    |     Input     |                      |      3.3 V       |  2B  | weak pullup |    User IO/Configuration    |
+|     J7     |      --CSI--       |      GPIOR_34_CSI     |     Input     |                      |      3.3 V       |  2B  | weak pullup |    User IO/Configuration    |
+|     J8     |     --UNUSED--     |        GPIOR_30       |     Input     |                      |      3.3 V       |  2B  | weak pullup |           User IO           |
+|     J9     |     --UNUSED--     |        GPIOR_28       |     Input     |                      |      3.3 V       |  2B  | weak pullup |           User IO           |
++------------+--------------------+-----------------------+---------------+----------------------+------------------+------+-------------+-----------------------------+
