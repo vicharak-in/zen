@@ -1,18 +1,18 @@
-# zink_alu
+# zink-alu
 
 A worked example of using your own design with zink. An 8-bit ALU sits in the FPGA, and the RP2350 sends it operands and an opcode over the link and reads back the result and flags. It runs on the Zen board.
 
-Read this first, then [docs/USING_ZINK.md](../../docs/USING_ZINK.md) for the general recipe.
+Read this first, then [docs/USING_ZINK.md](../../zink/docs/USING_ZINK.md) for the general recipe.
 
 ## Architecture
 
 ```
  RP2350                                   FPGA
  ┌──────────────────────┐                 ┌──────────────────────────────────────┐
- │ alu_demo.py          │                 │ alu.v  a, b, op ──► result, flags    │
+ │ alu-demo.py          │                 │ alu.v  a, b, op ──► result, flags    │
  │  fpga.write(0x10..12)│                 │   ▲ ctrl_flat              │ stat    │
  │  fpga.read(0x20/21)  │                 │   │                        ▼         │
- ├──────────────────────┤                 │ zink_alu_top.v: CTRL0/1/2 = A/B/op,  │
+ ├──────────────────────┤                 │ zink-alu-top.v: CTRL0/1/2 = A/B/op,  │
  │ fpga.mpy (bus.c)     │   D0..D7        │   result/flags -> flip-flops -> STAT │
  │ builds the frame,    │◄──────────────► ├──────────────────────────────────────┤
  │ drives the pins      │   CLK ────────► │ zl_regs + zl_slave = zen_link        │
@@ -24,7 +24,7 @@ Read this first, then [docs/USING_ZINK.md](../../docs/USING_ZINK.md) for the gen
  read path:   fpga.read(0x20) -> frame -> zl_regs reads stat_flat[7:0] (STAT0) -> D pins -> MCU
 ```
 
-Only `zink_alu_top.v` knows about both sides. `alu.v` and the link IP never see each other.
+Only `zink-alu-top.v` knows about both sides. `alu.v` and the link IP never see each other.
 
 ## What happens
 
@@ -40,7 +40,7 @@ fpga.read(0x21)  <────────────────────�
 1. **The MCU writes a register.** `fpga.write(0x10, 0xF0)` sends one frame over the 10 wires: a command byte, the address `0x0010`, then the data byte `0xF0`.
 2. **zink stores it.** The link IP checks the frame and puts the byte in CTRL0. CTRL0 is wired straight to the ALU's `a` input, so the ALU sees `0xF0` immediately. B and the opcode arrive the same way through CTRL1 and CTRL2.
 3. **The ALU computes.** `alu.v` is combinational. It never knows zink exists: it only sees `a`, `b` and `op`.
-4. **The result is captured.** `zink_alu_top.v` copies the ALU outputs into flip-flops on every fabric clock and wires those into STAT0 (result) and STAT1 (flags).
+4. **The result is captured.** `zink-alu-top.v` copies the ALU outputs into flip-flops on every fabric clock and wires those into STAT0 (result) and STAT1 (flags).
 5. **The MCU reads it back.** `fpga.read(0x20)` sends a read frame. zink drives the STAT0 byte onto the wires and the MCU reads it. A read takes tens of microseconds, much longer than the one or two clocks the ALU needs, so the answer is always ready. No handshake is needed.
 
 ## Registers
@@ -58,20 +58,29 @@ LED1 shows the zero flag and LED2 the carry flag (both pins are active low). NOT
 ## Files
 
 ```
-zink_alu/
+zink-alu/
 ├── rtl/
 │   ├── alu.v               the IP: knows nothing about zink
-│   └── zink_alu_top.v      glue: CTRL -> ALU inputs, ALU outputs -> STAT, plus zen_link
-├── zink_alu.xml            Efinity project (open this in Efinity)
+│   ├── zink-alu-top.v      glue: CTRL -> ALU inputs, ALU outputs -> STAT, plus zen_link
+│   └── zink/               Zen Link IP (zen-link.v, zl-slave.v, zl-regs.v), copied from zink/rtl
 ├── sim/
-│   ├── tb_zink_alu.v       tri-state bus wrapper around the top
+│   ├── tb-zink-alu.v       tri-state bus wrapper around the top
 │   ├── test_zink_alu.py    4 cocotb tests: all ops vs a Python model, LEDs, burst write
-│   └── run_sim.py
-└── mcu/
-    └── alu_demo.py         MicroPython demo
+│   ├── test_zen_link.py    LinkMaster (the MCU model), copied from zink/sim
+│   └── run-sim.py
+├── firmware/
+│   └── RP2350/
+│       ├── alu-demo.py     MicroPython demo
+│       └── fpga.mpy        Zen Link driver (built from zink/mcu)
+├── zink-alu.xml            Efinity project (open this in Efinity)
+├── zink-alu.peri.xml       pins
+├── bitstream/              put the built zink-alu.hex.bin here
+├── sdc/
+│   └── zink-alu.sdc        timing
+└── README.md
 ```
 
-To read the example in order: `alu.v` (the plain IP), `zink_alu_top.v` (the 30 lines of glue), `test_zink_alu.py` (how it is checked), `alu_demo.py` (how the MCU uses it).
+To read the example in order: `alu.v` (the plain IP), `zink-alu-top.v` (the 30 lines of glue), `test_zink_alu.py` (how it is checked), `alu-demo.py` (how the MCU uses it).
 
 ## Run it
 
@@ -79,18 +88,19 @@ To read the example in order: `alu.v` (the plain IP), `zink_alu_top.v` (the 30 l
 
 ```
 cd sim
-python run_sim.py
+python run-sim.py
 ```
 
 Expect 4/4 passing. The tests run every op against a Python model (corner cases plus random operands), check the LED pins, and write A, B and the opcode in a single 3-byte frame.
 
 **On the board:**
 
-1. Open `zink_alu.xml` (in this folder) in Efinity. It uses the link IP in `../../rtl` and the shared pin and timing files `../../zen_link.peri.xml` / `../../zen_link.sdc`. The first time, open Interface Designer, run Check Design and Generate Efinity Constraints. Then run the full flow. The bitstream is `outflow/zink_alu.hex.bin` in this folder.
-2. Copy it and set the loader's file name (run these from the zink folder):
+1. Open `zink-alu.xml` (in this folder) in Efinity. Everything it needs is in this folder: the link IP in `rtl/zink/`, the pins in `zink-alu.peri.xml` and the timing in `sdc/zink-alu.sdc`. The first time, open Interface Designer, run Check Design and Generate Efinity Constraints. Then run the full flow. The bitstream is `outflow/zink-alu.hex.bin`; copy it into `bitstream/` to keep it with the example.
+2. Copy the bitstream and the `fpga` driver to the board, and set the loader's file name (run these from this folder). If the board has no `main.py` loader yet, set `FILE_NAME` in `../../bring-up/mcu/rp_fpga_flash.py` to `zink-alu.hex.bin` and copy it as `main.py` (`python -m mpremote cp ../../bring-up/mcu/rp_fpga_flash.py :main.py`) instead of the last line.
    ```
-   python -m mpremote cp examples/zink_alu/outflow/zink_alu.hex.bin :
-   python -m mpremote exec "s=open('main.py').read().replace('zen_link.hex.bin','zink_alu.hex.bin'); open('main.py','w').write(s)"
+   python -m mpremote cp firmware/RP2350/fpga.mpy :
+   python -m mpremote cp outflow/zink-alu.hex.bin :
+   python -m mpremote exec "s=open('main.py').read().replace('zen_link.hex.bin','zink-alu.hex.bin'); open('main.py','w').write(s)"
    ```
 3. Load the FPGA onto the board (expect `CDONE = 1`):
    ```
@@ -155,7 +165,7 @@ It prints `44 2`.
 **Or run the demo script**, which loops through all 8 ops:
 
 ```
-python -m mpremote run examples/zink_alu/mcu/alu_demo.py
+python -m mpremote run firmware/RP2350/alu-demo.py
 ```
 
 Expected output for A = `0xF0`, B = `0x15` (measured on the board):
@@ -171,8 +181,8 @@ Expected output for A = `0xF0`, B = `0x15` (measured on the board):
 | SHL1 | 0xE0 | carry, negative |
 | SHR1 | 0x78 | none |
 
-If every result is `0x00` with no flags, the board is still running the old LED/button bitstream. Check that `FILE_NAME` in the board's `main.py` is `zink_alu.hex.bin`.
+If every result is `0x00` with no flags, the board is still running the old LED/button bitstream. Check that `FILE_NAME` in the board's `main.py` is `zink-alu.hex.bin`.
 
 ## Adapt it to your own design
 
-Replace `alu.v` with your IP, change the slices and packing in `zink_alu_top.v` to match your register map, and update the model in `test_zink_alu.py`. The step-by-step version is in [docs/USING_ZINK.md](../../docs/USING_ZINK.md).
+Replace `alu.v` with your IP, change the slices and packing in `zink-alu-top.v` to match your register map, and update the model in `test_zink_alu.py`. The step-by-step version is in [docs/USING_ZINK.md](../../zink/docs/USING_ZINK.md).

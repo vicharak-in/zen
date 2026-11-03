@@ -1,7 +1,7 @@
 """
 run_sim.py - builds zink_alu_top with Icarus and runs the cocotb tests.
 
-    cd examples/zink_alu/sim
+    cd examples/zink-alu/sim
     python run_sim.py            # run everything
     WAVES=1 python run_sim.py    # also dump waveforms for GTKWave
 """
@@ -12,9 +12,9 @@ from pathlib import Path
 from cocotb_tools.runner import get_runner, get_results
 
 HERE = Path(__file__).resolve().parent
-ZINK = HERE.parents[2]          # zink/ root
-RTL = ZINK / "rtl"              # link IP sources
-BASE_SIM = ZINK / "sim"         # base testbench helpers (LinkMaster)
+RTL = HERE.parent / "rtl"       # example sources
+ZINK_RTL = RTL / "zink"         # link IP sources
+BASE_SIM = HERE                 # test_zen_link.py (LinkMaster) sits next to this file
 
 
 def main():
@@ -27,12 +27,12 @@ def main():
     build_dir = HERE / "sim_build"
     runner.build(
         sources=[
-            HERE / "tb_zink_alu.v",
-            HERE.parent / "rtl" / "alu.v",
-            HERE.parent / "rtl" / "zink_alu_top.v",
-            RTL / "zl_slave.v",
-            RTL / "zl_regs.v",
-            RTL / "zen_link.v",
+            HERE / "tb-zink-alu.v",
+            RTL / "alu.v",
+            RTL / "zink-alu-top.v",
+            ZINK_RTL / "zl-slave.v",
+            ZINK_RTL / "zl-regs.v",
+            ZINK_RTL / "zen-link.v",
         ],
         hdl_toplevel="tb_zink_alu",
         build_dir=build_dir,

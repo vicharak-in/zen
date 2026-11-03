@@ -3,7 +3,7 @@
 `import fpga; fpga.write(addr, val); fpga.read(addr)` from MicroPython, and the same
 registers from Verilog. 8-bit registers, 10 wires, no clock-domain crossing. In Efinity the link IP is 180 LUT4 / 124 FF (4 ctrl + 4 stat); the LED/button example top around it is 182 LUT4 / 128 FF.
 
-New here? [USING_ZINK.md](./USING_ZINK.md) shows how to connect your own design, with two worked examples: [zink_pwm](../examples/zink_pwm) and [zink_alu](../examples/zink_alu).
+New here? [USING_ZINK.md](./USING_ZINK.md) shows how to connect your own design, with two worked examples: [zink-pwm](../../examples/zink-pwm) and [zink-alu](../../examples/zink-alu).
 
 ## Pins (Zen Link header, hardware V1.0 R0.1)
 
@@ -81,9 +81,9 @@ Addresses 0..0xFFFF, values 0..255. Blocks are any bytes-like object (`bytes`, `
 
 ## Verification
 
-`sim/run_sim.py`: 9 RTL tests plus 6 tests running the real `mcu/bus.c` against the RTL, each with combinational and registered user RAM. The examples have their own simulations (`examples/zink_alu/sim`: 4 tests, `examples/zink_pwm/sim`: 3 tests).
+`sim/run_sim.py`: 9 RTL tests plus 6 tests running the real `mcu/bus.c` against the RTL, each with combinational and registered user RAM. The examples have their own simulations (`examples/zink-alu/sim`: 4 tests, `examples/zink-pwm/sim`: 3 tests, in the repository's examples folder).
 
-On the Zen board: `sim/stress.py` (random write/read-back and 128-byte burst compare) runs with 0 errors at the default speed, the LED/button example top works, and both `zink_pwm` and `zink_alu` run correctly.
+On the Zen board: `sim/stress.py` (random write/read-back and 128-byte burst compare) runs with 0 errors at the default speed, the LED/button example top works, and both `zink-pwm` and `zink-alu` run correctly.
 
 ## Putting it on the board
 
@@ -91,7 +91,7 @@ On the Zen board: `sim/stress.py` (random write/read-back and 128-byte burst com
 
 Your own top module instantiates `zen_link` and connects `ctrl_flat` / `stat_flat` to your logic.
 
-The ready-made Efinity projects are `zen_link.xml` (LED/button top, in the zink root), `examples/zink_alu/zink_alu.xml` and `examples/zink_pwm/zink_pwm.xml`. Open one and run the flow, or follow the steps below for your own top.
+The ready-made Efinity projects are `zen_link.xml` (LED/button top, in the zink root), `examples/zink-alu/zink-alu.xml` and `examples/zink-pwm/zink-pwm.xml` (in the repository's examples folder). Open one and run the flow, or follow the steps below for your own top.
 
 1. Add `rtl/zen_link.v`, `rtl/zl_slave.v`, `rtl/zl_regs.v` to the project and instantiate `zen_link` in your top. Constrain `clk` at 50 MHz (period 20 ns).
 2. Feed `clk` at 50 MHz (oscillator directly, or PLL x16 with out divider 16).

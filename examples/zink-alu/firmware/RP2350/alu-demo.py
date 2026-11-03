@@ -1,6 +1,6 @@
 # alu_demo.py - drive the zink_alu example from MicroPython on the Zen board.
 # Load the FPGA first (python -m mpremote exec "import main"), then:
-#   python -m mpremote run examples/zink_alu/mcu/alu_demo.py
+#   python -m mpremote run firmware/RP2350/alu-demo.py
 import fpga
 
 # Register addresses used by zink_alu_top.

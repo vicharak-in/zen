@@ -1,8 +1,8 @@
-# zink_pwm
+# zink-pwm
 
 The simplest zink example: the RP2350 sets the brightness of the two board LEDs with one register write each. A small PWM block lives in the FPGA, and the MCU only changes a number.
 
-New to zink? Read this, then [examples/zink_alu](../zink_alu) for an example with results coming back, and [docs/USING_ZINK.md](../../docs/USING_ZINK.md) for the general recipe.
+New to zink? Read this, then [zink-alu](../zink-alu) for an example with results coming back, and [docs/USING_ZINK.md](../../zink/docs/USING_ZINK.md) for the general recipe.
 
 ## Architecture
 
@@ -12,7 +12,7 @@ New to zink? Read this, then [examples/zink_alu](../zink_alu) for an example wit
  │ your MicroPython     │                 │ pwm.v x2   counter < duty -> out     │
  │  fpga.write(0x10, d) │                 │   ▲ duty1 = ctrl_flat[7:0]   │ out   │
  │  fpga.write(0x11, d) │                 │   │ duty2 = ctrl_flat[15:8]  ▼       │
- ├──────────────────────┤                 │ zink_pwm_top.v: ~out -> led1 / led2  │
+ ├──────────────────────┤                 │ zink-pwm-top.v: ~out -> led1 / led2  │
  │ fpga.mpy (bus.c)     │   D0..D7        ├──────────────────────────────────────┤
  │ builds the frame,    │◄──────────────► │ zl_regs + zl_slave = zen_link        │
  │ drives the pins      │   CLK ────────► │ (samples pins with the 50 MHz clock) │
@@ -23,7 +23,7 @@ New to zink? Read this, then [examples/zink_alu](../zink_alu) for an example wit
  nothing comes back: the PWM keeps running by itself after the write
 ```
 
-The frame for `fpga.write(0x10, 128)` is four bytes: command `0x00` (write, 1 byte), address `0x00` `0x10`, data `0x80`. The general picture and the read frame are in [docs/USING_ZINK.md](../../docs/USING_ZINK.md).
+The frame for `fpga.write(0x10, 128)` is four bytes: command `0x00` (write, 1 byte), address `0x00` `0x10`, data `0x80`. The general picture and the read frame are in [docs/USING_ZINK.md](../../zink/docs/USING_ZINK.md).
 
 ## What happens
 
@@ -52,15 +52,25 @@ Both read back the value last written. No STAT registers are used. Consecutive r
 ## Files
 
 ```
-zink_pwm/
+zink-pwm/
 ├── rtl/
 │   ├── pwm.v               the IP: a counter and a comparator, knows nothing about zink
-│   └── zink_pwm_top.v      glue: CTRL0/1 -> two pwm blocks -> LEDs, plus zen_link
-├── zink_pwm.xml            Efinity project (open this in Efinity)
+│   ├── zink-pwm-top.v      glue: CTRL0/1 -> two pwm blocks -> LEDs, plus zen_link
+│   └── zink/               Zen Link IP (zen-link.v, zl-slave.v, zl-regs.v), copied from zink/rtl
 ├── sim/
-│   ├── tb_zink_pwm.v       tri-state bus wrapper around the top
+│   ├── tb-zink-pwm.v       tri-state bus wrapper around the top
 │   ├── test_zink_pwm.py    3 cocotb tests: on-time equals duty, channels independent, burst + readback
-│   └── run_sim.py
+│   ├── test_zen_link.py    LinkMaster (the MCU model), copied from zink/sim
+│   └── run-sim.py
+├── firmware/
+│   └── RP2350/
+│       └── fpga.mpy        Zen Link driver (built from zink/mcu)
+├── zink-pwm.xml            Efinity project (open this in Efinity)
+├── zink-pwm.peri.xml       pins
+├── bitstream/              put the built zink-pwm.hex.bin here
+├── sdc/
+│   └── zink-pwm.sdc        timing
+└── README.md
 ```
 
 ## Run it
@@ -69,18 +79,19 @@ zink_pwm/
 
 ```
 cd sim
-python run_sim.py
+python run-sim.py
 ```
 
 Expect 3/3 passing. The tests count, over one 256-clock period, how many clocks each LED pin is on, and check it equals the duty value for 0, 1, 64, 128, 200 and 255.
 
 **On the board:**
 
-1. Open `zink_pwm.xml` (in this folder) in Efinity. It uses the link IP in `../../rtl` and the shared pin and timing files `../../zen_link.peri.xml` / `../../zen_link.sdc`. The first time, open Interface Designer, run Check Design and Generate Efinity Constraints. Then run the full flow. The bitstream is `outflow/zink_pwm.hex.bin` in this folder.
-2. Copy it and set the loader's file name (run these from the zink folder):
+1. Open `zink-pwm.xml` (in this folder) in Efinity. Everything it needs is in this folder: the link IP in `rtl/zink/`, the pins in `zink-pwm.peri.xml` and the timing in `sdc/zink-pwm.sdc`. The first time, open Interface Designer, run Check Design and Generate Efinity Constraints. Then run the full flow. The bitstream is `outflow/zink-pwm.hex.bin`; copy it into `bitstream/` to keep it with the example.
+2. Copy the bitstream and the `fpga` driver to the board, and set the loader's file name (run these from this folder). If the board has no `main.py` loader yet, set `FILE_NAME` in `../../bring-up/mcu/rp_fpga_flash.py` to `zink-pwm.hex.bin` and copy it as `main.py` (`python -m mpremote cp ../../bring-up/mcu/rp_fpga_flash.py :main.py`) instead of the last line.
    ```
-   python -m mpremote cp examples/zink_pwm/outflow/zink_pwm.hex.bin :
-   python -m mpremote exec "s=open('main.py').read().replace('zen_link.hex.bin','zink_pwm.hex.bin'); open('main.py','w').write(s)"
+   python -m mpremote cp firmware/RP2350/fpga.mpy :
+   python -m mpremote cp outflow/zink-pwm.hex.bin :
+   python -m mpremote exec "s=open('main.py').read().replace('zen_link.hex.bin','zink-pwm.hex.bin'); open('main.py','w').write(s)"
    ```
    If `main.py` already points at another example, replace that file name instead.
 3. Load the FPGA onto the board (expect `CDONE = 1`):
@@ -134,7 +145,7 @@ python -m mpremote exec "import fpga; fpga.init(); fpga.write(0x10, 255); fpga.w
 
 Tested on the Zen board: both LEDs fade smoothly when the duty values are changed over the link.
 
-If nothing lights, check that `FILE_NAME` in the board's `main.py` is `zink_pwm.hex.bin`. A stale name loads the old design and still prints `CDONE = 1`.
+If nothing lights, check that `FILE_NAME` in the board's `main.py` is `zink-pwm.hex.bin`. A stale name loads the old design and still prints `CDONE = 1`.
 
 ## Build results (Efinity 2026.1, T4F81)
 
