@@ -1,0 +1,10 @@
+# Efinity build output (the finished bitstream is kept in bitstream/)
+outflow/
+work_*/
+ip/
+ooc/
+.lock
+
+# Simulation output
+*.vvp
+sim/sim.log
