@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<efx:project name="zink_pwm" description="" sw_version="2026.1.132" xmlns:efx="http://www.efinixinc.com/enf_proj" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.efinixinc.com/enf_proj enf_proj.xsd">
+<efx:project name="zink-alu" description="" sw_version="2026.1.132" xmlns:efx="http://www.efinixinc.com/enf_proj" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.efinixinc.com/enf_proj enf_proj.xsd">
     <efx:device_info>
         <efx:family name="Trion"/>
         <efx:device name="T4F81"/>
         <efx:timing_model name="C2"/>
     </efx:device_info>
     <efx:design_info def_veri_version="verilog_2k" def_vhdl_version="vhdl_2008" unified_flow="false" partition_interface_allowed_off_perimeter="true">
-        <efx:top_module name="zink_pwm_top"/>
-        <efx:design_file name="rtl/zink_pwm_top.v" version="default" library="default"/>
-        <efx:design_file name="rtl/pwm.v" version="default" library="default"/>
-        <efx:design_file name="../../rtl/zen_link.v" version="default" library="default"/>
-        <efx:design_file name="../../rtl/zl_slave.v" version="default" library="default"/>
-        <efx:design_file name="../../rtl/zl_regs.v" version="default" library="default"/>
+        <efx:top_module name="zink_alu_top"/>
+        <efx:design_file name="rtl/zink-alu-top.v" version="default" library="default"/>
+        <efx:design_file name="rtl/alu.v" version="default" library="default"/>
+        <efx:design_file name="rtl/zink/zen-link.v" version="default" library="default"/>
+        <efx:design_file name="rtl/zink/zl-slave.v" version="default" library="default"/>
+        <efx:design_file name="rtl/zink/zl-regs.v" version="default" library="default"/>
         <efx:top_vhdl_arch name=""/>
         <efx:msg_config name=""/>
         <efx:partition_definitions name=""/>
         <efx:partition_interface_assignments name=""/>
     </efx:design_info>
     <efx:interface_info>
-        <efx:default_peri_file name="../../zen_link.peri.xml"/>
-        <efx:peri_file name="../../zen_link.peri.xml"/>
+        <efx:default_peri_file name="zink-alu.peri.xml"/>
+        <efx:peri_file name="zink-alu.peri.xml"/>
     </efx:interface_info>
     <efx:constraint_info>
-        <efx:sdc_file name="../../zen_link.sdc"/>
+        <efx:sdc_file name="sdc/zink-alu.sdc"/>
         <efx:inter_file name=""/>
     </efx:constraint_info>
     <efx:sim_info/>

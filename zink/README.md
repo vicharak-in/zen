@@ -11,7 +11,7 @@ fpga.read(0x20)          # read a STAT register (buttons in the example top)
 
 The same registers appear as plain buses (`ctrl_flat`, `stat_flat`) in Verilog. 8-bit registers, 10 wires, no clock-domain crossing, no CRC. About 182 LUT4 / 128 FF on the T4F81 (4 CTRL + 4 STAT registers). Measured on the board: about 2.3 MB/s with 128-byte bursts at the default speed, zero errors in the stress test.
 
-Full protocol, pinout, timing and speed measurements: [docs/PROTOCOL.md](./docs/PROTOCOL.md). Want to connect your own design? See [docs/USING_ZINK.md](./docs/USING_ZINK.md) and the worked examples [examples/zink_pwm](./examples/zink_pwm) (simplest) and [examples/zink_alu](./examples/zink_alu).
+Full protocol, pinout, timing and speed measurements: [docs/PROTOCOL.md](./docs/PROTOCOL.md). Want to connect your own design? See [docs/USING_ZINK.md](./docs/USING_ZINK.md) and the worked examples [examples/zink-pwm](../examples/zink-pwm) (simplest) and [examples/zink-alu](../examples/zink-alu) in the repository's examples folder.
 
 ## Repository layout
 
@@ -20,10 +20,7 @@ zink/
 ├── README.md
 ├── docs/
 │   ├── PROTOCOL.md             pinout, frame format, registers, timing, speed table, integration
-│   └── USING_ZINK.md           how to plug your own design into zink (start with examples/zink_alu)
-├── examples/
-│   ├── zink_pwm/               LED brightness set from the MCU (simplest example), with its own Efinity project
-│   └── zink_alu/               8-bit ALU controlled over zink (rtl, sim, mcu demo), with its own Efinity project
+│   └── USING_ZINK.md           how to plug your own design into zink (start with examples/zink-alu)
 ├── rtl/                        FPGA design (Verilog)
 │   ├── top.v                     example top: LEDs on CTRL0, buttons on STAT0
 │   ├── zen_link.v                link IP top (ports, ctrl/stat buses, user bus)
