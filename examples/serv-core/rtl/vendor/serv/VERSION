@@ -1,0 +1,7 @@
+SERV release 1.4.0 (tagged 2025-10-15), commit 7d9cde4
+Source: https://github.com/olofk/serv (tag 1.4.0)
+Files are copied unmodified from that tag; only the files this project uses are kept:
+  rtl/      rtl/serv_*.v      the CPU (ISC licence, see LICENSE)
+  servile/  servile.v, servile_arbiter.v, servile_mux.v   convenience wrapper (Apache-2.0 headers in the files)
+  servant/  servant_ram.v, servant_timer.v   RAM and timer reused by the SoC
+Not included: MDU (M extension) core, the servant reference SoC, benches, board ports, RISCOF plugin.
